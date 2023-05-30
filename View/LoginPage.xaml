@@ -3,13 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ALMSAPP.View.LoginPage"
              Title="LoginPage">
-    <VerticalStackLayout>
-        <Label Text="Login Page" />
+    <VerticalStackLayout
+        VerticalOptions="Center">
+        <Label 
+            Text="Welcome, please log in"
+            FontSize="Title"
+            WidthRequest="300"
+            Margin="0,0,0,20"
+            />
+
+        <HorizontalStackLayout
+            HorizontalOptions="Center">
+            <Label
+                Text="UserName"                
+                FontSize="Medium"
+                FontAttributes="Bold"
+                Margin="0,0,10,0"
+                />
+            <Entry
+                FontSize="Medium"
+                WidthRequest="150"
+                Text="{Binding Email}"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout
+            HorizontalOptions="Center">
+            <Label
+                Text="Password" 
+                FontSize="Medium"
+                FontAttributes="Bold"
+                Margin="0,0,10,0" />
+            <Entry             
+                WidthRequest="150"
+                FontSize="Medium"
+                IsPassword="True"
+                Text="{Binding Password}"/>
+        </HorizontalStackLayout>
 
         <Button
             Text="Log in"
-            Clicked="OnLoginClicked" />
-
-
+            Clicked="OnLoginClicked"
+            HorizontalOptions="Center"
+            Margin="0,10,0,0" />
+            
     </VerticalStackLayout>
 </ContentPage>
