@@ -3,75 +3,81 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:ALMSAPP.Model"
              x:Class="ALMSAPP.View.MedicinePage"
-             Title="MedicinePage">
+             Title="Medicinanteckning">
     <VerticalStackLayout
-        VerticalOptions="Center"
         HorizontalOptions="Center"
-        Spacing="10">
+        VerticalOptions="Center">
 
-        <Label
-            Text="Add a medicine record"
+
+
+
+            <Label
+            Text="Lägg till en medicinanteckning"
             FontSize="Medium"
             Margin="0,0,0,30"
-            FontFamily="Bold"/>
+            FontFamily="Bold"
+                HorizontalOptions="Center"/>
 
-        <StackLayout>
-            <Label Text="Välj en medicin" />
+            <Label Text="Välj en medicin"
+                   HorizontalOptions="Center"/>
 
             <Picker ItemsSource="{Binding Items}"
-                    ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding selectedItem}"
-                    SelectedIndexChanged="OnSelectedIndexChanged"
-                    WidthRequest="200"/>
-            <Label Text="Ange datum när medicinen har tagits" />
-            
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding selectedItem}"
+                        SelectedIndexChanged="OnSelectedIndexChanged"
+                        WidthRequest="200"
+                        HorizontalOptions="Center"
+                        BackgroundColor="LightBlue">
+            </Picker>
+
+            <Label Text="Ange datum"
+                   HorizontalOptions="Center"/>
+
             <DatePicker
-                MinimumDate="01/01/2020"
-                MaximumDate="01/01/2040"
-                DateSelected="OnDateSelected"/>
-            
-            <Label Text="Ange tidspunkt" />
-            
+                    MinimumDate="01/01/2020"
+                    MaximumDate="01/01/2040"
+                    DateSelected="OnDateSelected"
+                    BackgroundColor="LightBlue"
+                HorizontalOptions="Center"/>
+
+            <Label Text="Ange tidspunkt"
+                   HorizontalOptions="Center"/>
+
             <TimePicker
-                Time="{Binding selectedTime}"
-                PropertyChanged="OnTimeChanged"
-                />
-            <Button Text="Timecheck"
-                Clicked="TimeSelectedChecker"
+                    Time="{Binding selectedTime}"
+                    PropertyChanged="OnTimeChanged"
+                    BackgroundColor="LightBlue"
+                HorizontalOptions="Center"
                     />
-            <Button Text="Lägg till medicin anteckning"
+
+
+        <Button Text="Lägg till medicin anteckning"
                 Clicked="AddMedicineRecord"/>
+
+            <Grid RowDefinitions="*,Auto">
+                    <CollectionView 
+                      VerticalOptions="Fill"
+                      ItemsSource="{Binding RecordItems}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:MedicineRecordItem">
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <HorizontalStackLayout
+                                Spacing="20">
+                                        <Label Text="{Binding selectedItem}" />
+                                        <Label Text="{Binding selectedDate}" />
+                                        <Label Text="{Binding selectedTime}" />
+                                        <Button Text="Ta bort 🗑️" 
+                                        Clicked="DeleteMedicineRecord"
+                                        BackgroundColor="Red"
+                                        Scale="0.8"/>
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
             
-        </StackLayout>
-
-
-
-            <CollectionView 
-                  VerticalOptions="Fill"
-                  ItemsSource="{Binding RecordItems}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:MedicineRecordItem">
-                    <StackLayout>
-                        <HorizontalStackLayout
-                            Spacing="20">
-                            <Label Text="{Binding selectedItem}"
-                                   VerticalTextAlignment="Center"
-                                   />
-                            <Label Text="{Binding selectedDate}"
-                                   VerticalOptions="Center"
-                                   />
-                            <Label Text="{Binding selectedTime}"
-                                   VerticalOptions="Center"/>
-                            <Button Text="Ta bort 🗑️" 
-                                    Clicked="DeleteMedicineRecord"
-                                    BackgroundColor="Red"
-                                    Scale="0.8"/>
-                        </HorizontalStackLayout>
-                    </StackLayout>
-                </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
 
     </VerticalStackLayout>
 </ContentPage>

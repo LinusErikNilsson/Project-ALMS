@@ -1,4 +1,6 @@
 using ALMSAPP.Model;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
@@ -43,17 +45,12 @@ public partial class MedicinePage : ContentPage
         if (selectedIndex != -1)
         {
             selectedItem = picker.Items[selectedIndex].ToString();
-            DisplayAlert("Selected Item", selectedItem, "OK");
         }
     }
 
     void OnDateSelected(object sender,DateChangedEventArgs args)
     {
-
         selectedDate = ((DatePicker)sender).Date.ToString("d");
-
-        DisplayAlert("Selected Date", ((DatePicker)sender).Date.ToString("d"), "OK");
-
     }
 
     public async void OnTimeChanged(object sender, PropertyChangedEventArgs args)
@@ -61,34 +58,57 @@ public partial class MedicinePage : ContentPage
         selectedTime = ((TimePicker)sender).Time.ToString();
     }
 
-    void TimeSelectedChecker(object sender, EventArgs e)
+    public async void AddMedicineRecord(object sender, EventArgs e)
     {
-        DisplayAlert("Selected Time", selectedTime, "OK");
-    }
-
-    public void AddMedicineRecord(object sender, EventArgs e)
-    {
-        MedicineRecordItem RecordItem = new MedicineRecordItem
+        if (selectedItem is null)
         {
-            selectedItem = selectedItem,
-            selectedDate = selectedDate,
-            selectedTime = selectedTime
-        };
+            await DisplayAlert("Info", "Ingen medicin är vald - anteckningen kan inte läggas till", "OK");
+        }
+        else
+        {
+            MedicineRecordItem RecordItem = new MedicineRecordItem
+            {
+                selectedItem = selectedItem,
+                selectedDate = selectedDate,
+                selectedTime = selectedTime
+            };
 
-        RecordItems.Add(RecordItem);
+            RecordItems.Add(RecordItem);
+
+            var CancellationTokenSource = new CancellationTokenSource();
+            var message = $"Anteckning skapad: {selectedItem}";
+            ToastDuration duration = ToastDuration.Short;
+            var fontSize = 14;
+            var toast = Toast.Make(message, duration, fontSize);
+            await toast.Show(CancellationTokenSource.Token);
+        }
+
     }
 
-    public void AddBasicRecordData()
+    public async void AddBasicRecordData()
     {
         RecordItems.Add(new MedicineRecordItem { selectedItem = "Paracetamol", selectedDate = "31/05/2023", selectedTime = "10:00" });
-
     }
 
-    public void DeleteMedicineRecord(object sender, EventArgs e)
+    public async void DeleteMedicineRecord(object sender, EventArgs e)
     {
         var button = sender as Button;
         var recordItem = button.BindingContext as MedicineRecordItem;
-        RecordItems.Remove(recordItem);
+        //RecordItems.Remove(recordItem);
+
+        string action = await DisplayActionSheet("Vill du ta bort anteckningen?", "Nej", "Ja");
+
+        if (action == "Ja")
+        {
+            RecordItems.Remove(recordItem);
+            await DisplayAlert("Info", "Anteckning borttagen", "OK");
+        }
+        else if (action == "Nej")
+        {
+            return;
+        }
+
+
     }
 
 }
