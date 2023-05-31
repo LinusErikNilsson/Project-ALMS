@@ -81,6 +81,14 @@ public partial class MedicinePage : ContentPage
     public void AddBasicRecordData()
     {
         RecordItems.Add(new MedicineRecordItem { selectedItem = "Paracetamol", selectedDate = "31/05/2023", selectedTime = "10:00" });
+
+    }
+
+    public void DeleteMedicineRecord(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var recordItem = button.BindingContext as MedicineRecordItem;
+        RecordItems.Remove(recordItem);
     }
 
 }
