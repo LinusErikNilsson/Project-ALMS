@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 using ALMSAPP.Services;
+using ALMSAPP.Database;
 
 namespace ALMSAPP;
 
@@ -19,6 +20,7 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddSingleton<MedicineItemService>();
+		builder.Services.AddSingleton<MedicineRecordItemDatabase>();
 
 
 #if DEBUG

@@ -53,8 +53,12 @@
 
         <Button Text="Lägg till medicin anteckning"
                 Clicked="AddMedicineRecord"/>
+        <Button Text="Lägg till DB"
+                Clicked="AddDataToDatabase" />
+        <Button Text="Get DB data"
+                Clicked="AddDataToCollectionFromDatabase" />
 
-            <Grid RowDefinitions="*,Auto">
+        <Grid RowDefinitions="*,Auto">
                     <CollectionView 
                       VerticalOptions="Fill"
                       ItemsSource="{Binding RecordItems}">
@@ -77,7 +81,6 @@
                     </CollectionView>
 
                 </Grid>
-            
-
+    
     </VerticalStackLayout>
 </ContentPage>

@@ -1,3 +1,4 @@
+using ALMSAPP.Database;
 using ALMSAPP.Model;
 using ALMSAPP.Services;
 using CommunityToolkit.Maui.Alerts;
@@ -9,6 +10,8 @@ namespace ALMSAPP.View;
 
 public partial class MedicinePage : ContentPage
 {
+    MedicineRecordItemDatabase Database = new();
+
     public ObservableCollection<MedicineItem> Items { get; set; } = new ObservableCollection<MedicineItem>();
 
     public ObservableCollection<MedicineRecordItem> RecordItems { get; set; } = new ObservableCollection<MedicineRecordItem>();
@@ -30,6 +33,29 @@ public partial class MedicinePage : ContentPage
     {
         base.OnAppearing();
         AddDataToCollection();
+        //AddDataToCollectionFromDatabase();
+    }
+
+    public async void AddDataToCollectionFromDatabase(object sender, EventArgs e)
+    {
+        RecordItems.Clear();
+        var databaseItems = Database.GetItemsAsync();
+        foreach (var item in await databaseItems)
+        {
+            RecordItems.Add(item);
+        }
+    }
+
+    public async void AddDataToDatabase(object sender, EventArgs e)
+    {
+        MedicineRecordItem RecordItem = new MedicineRecordItem
+        {
+            selectedItem = selectedItem,
+            selectedDate = selectedDate,
+            selectedTime = selectedTime
+        };
+
+        await Database.SaveItemAsync(RecordItem);
     }
 
     public async void AddDataToCollection()
@@ -111,14 +137,14 @@ public partial class MedicinePage : ContentPage
 
         if (action == "Ja")
         {
-            RecordItems.Remove(recordItem);
+            //RecordItems.Remove(recordItem);
+            await Database.DeleteItemAsync(recordItem);
             await DisplayAlert("Info", "Anteckning borttagen", "OK");
         }
         else if (action == "Nej")
         {
             return;
         }
-
 
     }
 
