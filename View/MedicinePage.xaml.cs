@@ -1,4 +1,5 @@
 using ALMSAPP.Model;
+using ALMSAPP.Services;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using System.Collections.ObjectModel;
@@ -11,6 +12,8 @@ public partial class MedicinePage : ContentPage
     public ObservableCollection<MedicineItem> Items { get; set; } = new ObservableCollection<MedicineItem>();
 
     public ObservableCollection<MedicineRecordItem> RecordItems { get; set; } = new ObservableCollection<MedicineRecordItem>();
+
+    MedicineItemService medicineItemService = new();
 
     public string selectedItem { get; set; }
     public string selectedDate { get; set; }
@@ -26,15 +29,28 @@ public partial class MedicinePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        AddBasicRecordData();
         AddDataToCollection();
     }
 
-    public void AddDataToCollection()
+    public async void AddDataToCollection()
     {
-        Items.Add(new MedicineItem { Name = "Paracetamol" });
-        Items.Add(new MedicineItem { Name = "Ibuprofen" });
-        Items.Add(new MedicineItem { Name = "Aspirin" });
+        try
+        {
+            var medicineItemCollection = await medicineItemService.GetMedicineAsync();
+
+            //Clear collection before adding items from medicineList
+            Items.Clear();
+
+            foreach (var item in medicineItemCollection)
+            {
+                Items.Add(item);
+            }
+        }
+        catch
+        {
+            await DisplayAlert("Varning", "Kunde inte hämta data från APIet", "OK");
+        }
+
     }
 
     private void OnSelectedIndexChanged(object sender, EventArgs e)
@@ -83,11 +99,6 @@ public partial class MedicinePage : ContentPage
             await toast.Show(CancellationTokenSource.Token);
         }
 
-    }
-
-    public async void AddBasicRecordData()
-    {
-        RecordItems.Add(new MedicineRecordItem { selectedItem = "Paracetamol", selectedDate = "31/05/2023", selectedTime = "10:00" });
     }
 
     public async void DeleteMedicineRecord(object sender, EventArgs e)
