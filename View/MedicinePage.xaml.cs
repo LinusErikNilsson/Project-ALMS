@@ -32,22 +32,27 @@ public partial class MedicinePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        AddDataToCollection();
-        //AddDataToCollectionFromDatabase();
-    }
-
-    public async void AddDataToCollectionFromDatabase(object sender, EventArgs e)
-    {
-        RecordItems.Clear();
-        var databaseItems = Database.GetItemsAsync();
-        foreach (var item in await databaseItems)
-        {
-            RecordItems.Add(item);
-        }
+        AddMedicineItemToCollection();
     }
 
     public async void AddDataToDatabase(object sender, EventArgs e)
     {
+        if(selectedItem == null)
+        {
+            await DisplayAlert("Info", "Ingen medicin är vald - anteckningen kan inte läggas till", "OK");
+            return;
+        }
+        if(selectedDate == null)
+        {             
+            await DisplayAlert("Info", "Inget datum är valt - anteckningen kan inte läggas till", "OK");
+            return;
+        }
+        if(selectedTime == string.Empty)
+        {
+            await DisplayAlert("Info", "Ingen tid är vald - anteckningen kan inte läggas till", "OK");
+            return;
+        }
+
         MedicineRecordItem RecordItem = new MedicineRecordItem
         {
             selectedItem = selectedItem,
@@ -56,9 +61,17 @@ public partial class MedicinePage : ContentPage
         };
 
         await Database.SaveItemAsync(RecordItem);
+
+
+        var CancellationTokenSource = new CancellationTokenSource();
+        var message = $"Ny anteckning skapad: {selectedItem}";
+        ToastDuration duration = ToastDuration.Short;
+        var fontSize = 14;
+        var toast = Toast.Make(message, duration, fontSize);
+        await toast.Show(CancellationTokenSource.Token);
     }
 
-    public async void AddDataToCollection()
+    public async void AddMedicineItemToCollection()
     {
         try
         {
@@ -98,54 +111,6 @@ public partial class MedicinePage : ContentPage
     public async void OnTimeChanged(object sender, PropertyChangedEventArgs args)
     {
         selectedTime = ((TimePicker)sender).Time.ToString();
-    }
-
-    public async void AddMedicineRecord(object sender, EventArgs e)
-    {
-        if (selectedItem is null)
-        {
-            await DisplayAlert("Info", "Ingen medicin är vald - anteckningen kan inte läggas till", "OK");
-        }
-        else
-        {
-            MedicineRecordItem RecordItem = new MedicineRecordItem
-            {
-                selectedItem = selectedItem,
-                selectedDate = selectedDate,
-                selectedTime = selectedTime
-            };
-
-            RecordItems.Add(RecordItem);
-
-            var CancellationTokenSource = new CancellationTokenSource();
-            var message = $"Anteckning skapad: {selectedItem}";
-            ToastDuration duration = ToastDuration.Short;
-            var fontSize = 14;
-            var toast = Toast.Make(message, duration, fontSize);
-            await toast.Show(CancellationTokenSource.Token);
-        }
-
-    }
-
-    public async void DeleteMedicineRecord(object sender, EventArgs e)
-    {
-        var button = sender as Button;
-        var recordItem = button.BindingContext as MedicineRecordItem;
-        //RecordItems.Remove(recordItem);
-
-        string action = await DisplayActionSheet("Vill du ta bort anteckningen?", "Nej", "Ja");
-
-        if (action == "Ja")
-        {
-            //RecordItems.Remove(recordItem);
-            await Database.DeleteItemAsync(recordItem);
-            await DisplayAlert("Info", "Anteckning borttagen", "OK");
-        }
-        else if (action == "Nej")
-        {
-            return;
-        }
-
     }
 
 }

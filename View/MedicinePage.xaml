@@ -47,6 +47,7 @@
             <DatePicker
                     MinimumDate="01/01/2020"
                     MaximumDate="01/01/2040"
+                    Date="{Binding selectedDate}"
                     DateSelected="OnDateSelected"
                     BackgroundColor="#f5ccd0"
                 HorizontalOptions="Center"/>
@@ -66,52 +67,16 @@
                     />
 
 
-        <Button Text="Lägg till medicin anteckning"
-                Clicked="AddMedicineRecord"
-                BackgroundColor="#f5ccd0"
-                BorderColor="#d67b97"
-                BorderWidth="3"
-                TextColor="Black"/>
-
         <Button Text="Lägg till"
                 Clicked="AddDataToDatabase"
+                SemanticProperties.Description="Tryck på denna knappen för att lägga till den valda"
                 BackgroundColor="#f5ccd0"
                 BorderColor="#d67b97"
                 BorderWidth="3"
                 TextColor="Black"
                 FontFamily="SegoeUI"
-                FontSize="16"/>
+                FontSize="18"/>
         
-        <Button Text="Get DB data"
-                Clicked="AddDataToCollectionFromDatabase" 
-                BackgroundColor="#f5ccd0"
-                BorderColor="#d67b97"
-                BorderWidth="3"
-                TextColor="Black"/>
-
-        <Grid RowDefinitions="*,Auto">
-                    <CollectionView 
-                      VerticalOptions="Fill"
-                      ItemsSource="{Binding RecordItems}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:MedicineRecordItem">
-                                <Grid ColumnDefinitions="*, Auto">
-                                    <HorizontalStackLayout
-                                Spacing="20">
-                                        <Label Text="{Binding selectedItem}" />
-                                        <Label Text="{Binding selectedDate}" />
-                                        <Label Text="{Binding selectedTime}" />
-                                        <Button Text="Ta bort 🗑️" 
-                                        Clicked="DeleteMedicineRecord"
-                                        BackgroundColor="Red"
-                                        Scale="0.8"/>
-                                    </HorizontalStackLayout>
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-
-                </Grid>
     
     </VerticalStackLayout>
 </ContentPage>
