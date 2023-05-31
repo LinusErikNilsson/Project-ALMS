@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:ALMSAPP.Model"
              x:Class="ALMSAPP.View.MedicinePage"
              Title="MedicinePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+
+        <Label
+            Text="Add a medicine record"
+            FontSize="Medium"
+            Margin="0,0,0,30"
+            FontFamily="Bold"/>
+
+        <Picker ItemsSource="{Binding Items}"
+                ItemDisplayBinding="{Binding Name}"
+                Title="Select a medicine"
+                SelectedItem="{Binding selectedItem}"
+                SelectedIndexChanged="OnSelectedIndexChanged"/>
+        <DatePicker
+            MinimumDate="01/01/2020"
+            MaximumDate="01/01/2040"
+            DateSelected="OnDateSelected"/>
+        <TimePicker
+            Time="{Binding selectedTime}"
+            PropertyChanged="OnTimeChanged"
+            />
+        <Button Text="Timecheck"
+            Clicked="TimeSelectedChecker"
+                />
+        <Button Text="Add Medicine Record"
+            Clicked="AddMedicineRecord"/>
+
+        <Grid RowDefinitions="*,Auto">
+            <CollectionView 
+                  VerticalOptions="Fill"
+                  ItemsSource="{Binding RecordItems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:MedicineRecordItem">
+                        <Grid ColumnDefinitions="*, Auto" Padding="20">
+                            <Label Text="{Binding selectedItem}"
+                                   VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
     </VerticalStackLayout>
 </ContentPage>
