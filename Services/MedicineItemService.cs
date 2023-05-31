@@ -24,7 +24,7 @@ namespace ALMSAPP.Services
                 return medicineItemListOC;
             }
 
-            var url = "https://localhost:7116/medicines";
+            var url = "https://localhost:7138/api/MedicineItem";
 
             var response = await httpClient.GetAsync(url);
 
