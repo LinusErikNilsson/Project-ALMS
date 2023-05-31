@@ -2,7 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ALMSAPP.MainPage"
-             Title="Welcome">
+             Title="Welcome"
+                          Shell.BackgroundColor="#FFFFFF"
+             Shell.TitleColor="#d47b95"
+             Background="#2d5b49">
 
     <ScrollView>
         <VerticalStackLayout
@@ -14,20 +17,40 @@
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 HeightRequest="200"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                />
 
             <Label
-                Text="Welcome to ALMS"
+                Text="Hej ALMS!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                TextColor="#d47b95"
+                FontAttributes="Bold"
+                FontFamily="SegoeUI"
+                />
+
+            <Label
+                Text="Din hjälpreda att hålla koll på dina mediciner!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="26"
+                HorizontalOptions="Center"
+                TextColor="#d47b95"
+                FontAttributes="Bold"
+                FontFamily="SegoeUI"/>
 
             <Button
                 x:Name="LoginBtn"
-                Text="Login"
+                Text="Fortsätt"
                 Clicked="NavigateToLogin"
                 HorizontalOptions="Center"
-                CornerRadius="20" />
+                CornerRadius="20"
+                BackgroundColor="#f5ccd0"
+                BorderColor="#d67b97"
+                BorderWidth="4"
+                TextColor="Black"
+                MinimumWidthRequest="100"
+                FontFamily="SegoeUI"/>
 
         </VerticalStackLayout>
     </ScrollView>

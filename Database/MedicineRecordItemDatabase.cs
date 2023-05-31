@@ -26,15 +26,7 @@ namespace ALMSAPP.Database
             return await Database.Table<MedicineRecordItem>().ToListAsync();
         }
 
-        //public async Task<List<MedicineRecordItem>> GetItemsNotDoneAsync()
-        //{
-        //    await Init();
-        //    return await Database.Table<MedicineRecordItem>().Where(t => t.Done).ToListAsync();
-
-        //    // SQL queries are also possible
-        //    //return await Database.QueryAsync<TodoItem>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        //}
-
+        //Unused for now
         public async Task<MedicineRecordItem> GetItemAsync(int id)
         {
             await Init();
@@ -54,6 +46,12 @@ namespace ALMSAPP.Database
         {
             await Init();
             return await Database.DeleteAsync(medicineRecordItem);
+        }
+
+        public async Task DeleteAllItemsAsync()
+        {
+            await Init();
+            await Database.ExecuteAsync("DELETE FROM [MedicineRecordItem]");
         }
 
     }

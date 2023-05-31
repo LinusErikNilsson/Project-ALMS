@@ -3,23 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:ALMSAPP.Model"
              x:Class="ALMSAPP.View.MedicinePage"
-             Title="Medicinanteckning">
+             Title="Lägg till medicin"
+             Shell.BackgroundColor="#FFFFFF"
+             Shell.TitleColor="#d47b95"
+             Background="#2d5b49"
+             >
+    
     <VerticalStackLayout
         HorizontalOptions="Center"
-        VerticalOptions="Center">
-
-
-
+        VerticalOptions="Center"
+        Spacing="5">
 
             <Label
             Text="Lägg till en medicinanteckning"
-            FontSize="Medium"
+            FontSize="26"
             Margin="0,0,0,30"
-            FontFamily="Bold"
-                HorizontalOptions="Center"/>
+            FontFamily="SegoeUI"
+                HorizontalOptions="Center"
+                TextColor="White" />
 
             <Label Text="Välj en medicin"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontFamily="SegoeUI"
+                   FontSize="20" />
 
             <Picker ItemsSource="{Binding Items}"
                         ItemDisplayBinding="{Binding Name}"
@@ -27,36 +34,60 @@
                         SelectedIndexChanged="OnSelectedIndexChanged"
                         WidthRequest="200"
                         HorizontalOptions="Center"
-                        BackgroundColor="LightBlue">
+                        BackgroundColor="#f5ccd0"
+                    FontSize="20" >
             </Picker>
 
             <Label Text="Ange datum"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontFamily="SegoeUI"
+                   FontSize="20"/>
 
             <DatePicker
                     MinimumDate="01/01/2020"
                     MaximumDate="01/01/2040"
                     DateSelected="OnDateSelected"
-                    BackgroundColor="LightBlue"
+                    BackgroundColor="#f5ccd0"
                 HorizontalOptions="Center"/>
 
             <Label Text="Ange tidspunkt"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontSize="20"
+                   FontFamily="SegoeUI"
+                   />
 
             <TimePicker
                     Time="{Binding selectedTime}"
                     PropertyChanged="OnTimeChanged"
-                    BackgroundColor="LightBlue"
                 HorizontalOptions="Center"
+                BackgroundColor="#f5ccd0"
                     />
 
 
         <Button Text="Lägg till medicin anteckning"
-                Clicked="AddMedicineRecord"/>
-        <Button Text="Lägg till DB"
-                Clicked="AddDataToDatabase" />
+                Clicked="AddMedicineRecord"
+                BackgroundColor="#f5ccd0"
+                BorderColor="#d67b97"
+                BorderWidth="3"
+                TextColor="Black"/>
+
+        <Button Text="Lägg till"
+                Clicked="AddDataToDatabase"
+                BackgroundColor="#f5ccd0"
+                BorderColor="#d67b97"
+                BorderWidth="3"
+                TextColor="Black"
+                FontFamily="SegoeUI"
+                FontSize="16"/>
+        
         <Button Text="Get DB data"
-                Clicked="AddDataToCollectionFromDatabase" />
+                Clicked="AddDataToCollectionFromDatabase" 
+                BackgroundColor="#f5ccd0"
+                BorderColor="#d67b97"
+                BorderWidth="3"
+                TextColor="Black"/>
 
         <Grid RowDefinitions="*,Auto">
                     <CollectionView 

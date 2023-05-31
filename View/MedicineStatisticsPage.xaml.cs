@@ -1,3 +1,4 @@
+using ALMSAPP.Database;
 using ALMSAPP.Model;
 using ALMSAPP.Services;
 using System.Collections.ObjectModel;
@@ -7,7 +8,8 @@ namespace ALMSAPP.View;
 
 public partial class MedicineStatisticsPage : ContentPage
 {
-	public ObservableCollection<MedicineItem> Items { get; set; } = new ObservableCollection<MedicineItem>();
+    MedicineRecordItemDatabase Database = new();
+    public ObservableCollection<MedicineRecordItem> Items { get; set; } = new ObservableCollection<MedicineRecordItem>();
 
 	MedicineItemService medicineItemService = new();
 
@@ -28,22 +30,39 @@ public partial class MedicineStatisticsPage : ContentPage
 	{
 		try
 		{
-			var medicineItemList = await medicineItemService.GetMedicineAsync();
-			foreach (var item in medicineItemList)
-			{
-				Items.Add(item);
-			}
-		}
+            Items.Clear();
+            var databaseItems = Database.GetItemsAsync();
+            foreach (var item in await databaseItems)
+            {
+                Items.Add(item);
+            }
+        }
 
 		catch (Exception ex)
 		{
             await DisplayAlert("Error", ex.Message, "OK");
         }
 
-
-		//Items.Add(new MedicineItem { Name = "Paracetamol" });
-		//Items.Add(new MedicineItem { Name = "Ibuprofen" });
-		//Items.Add(new MedicineItem { Name = "Aspirin" });
 	}
+
+    public async void DeleteMedicineRecord(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var recordItem = button.BindingContext as MedicineRecordItem;
+
+        string action = await DisplayActionSheet("Vill du ta bort anteckningen?", "Nej", "Ja");
+
+        if (action == "Ja")
+        {
+            await Database.DeleteItemAsync(recordItem);
+            await DisplayAlert("Info", "Anteckning borttagen", "OK");
+            AddData();
+        }
+        else if (action == "Nej")
+        {
+            return;
+        }
+
+    }
 
 }

@@ -50,6 +50,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\coggearfilled.svg" />
+	  <None Remove="Resources\Images\list.svg" />
 	  <None Remove="Resources\Images\pillmedicine.svg" />
 	</ItemGroup>
 
@@ -71,6 +72,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\WebViewDemo.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

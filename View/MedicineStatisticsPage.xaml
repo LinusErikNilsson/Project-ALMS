@@ -3,21 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:ALMSAPP.Model"
              x:Class="ALMSAPP.View.MedicineStatisticsPage"
-             Title="MedicineStatisticsPage">
+             Title="Medicinlista"
+             Shell.BackgroundColor="#FFFFFF"
+             Shell.TitleColor="#d47b95"
+             Background="#2d5b49">
 
-    <Grid RowDefinitions="*,Auto">
-        <CollectionView 
-                  VerticalOptions="Fill"
-                  ItemsSource="{Binding Items}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:MedicineItem">
-                    <Grid ColumnDefinitions="*, Auto" Padding="20">
-                        <Label Text="{Binding Name}"
-                                   VerticalTextAlignment="Center"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
+    <ScrollView>
+
+        <VerticalStackLayout>
+
+
+
+            <Label Text="Här visas en lista över tillagda mediciner:"
+               Margin="0,0,0,10"
+               TextColor="White"
+               FontFamily="SegoeUI"
+               FontAttributes="Italic"
+               FontSize="18"
+               HorizontalOptions="Start"
+                     />
+
+            <HorizontalStackLayout Spacing="30"
+                               HorizontalOptions="Start">
+                <Label Text="Medicin"
+                   FontSize="24"
+                   TextColor="White"/>
+                <Label Text="Datum"
+                   FontSize="24"
+                   TextColor="White"/>
+                <Label Text="Tid"
+                   FontSize="24"
+                   TextColor="White"/>
+
+            </HorizontalStackLayout>
+
+
+            <Grid RowDefinitions="*,Auto">
+                <CollectionView
+                      ItemsSource="{Binding Items}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:MedicineRecordItem">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <HorizontalStackLayout
+                                Spacing="20">
+                                    <Label Text="{Binding selectedItem}" 
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           ToolTipProperties.Text="Medicinnamn"/>
+                                    <Label Text="{Binding selectedDate}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" ToolTipProperties.Text="Datumet då medicinen administrerades"/>
+                                    <Label Text="{Binding selectedTime}" TextColor="White" VerticalOptions="Center" ToolTipProperties.Text="Tiden då medicinen administrerades"/>
+                                    <Button Text="🗑️" 
+                                        Clicked="DeleteMedicineRecord"
+                                        BackgroundColor="Red" 
+                                        Scale="0.8"
+                                            VerticalOptions="Center"
+                                            ToolTipProperties.Text="Ta bort Medicinanteckningen från listan"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+    
 
 </ContentPage>

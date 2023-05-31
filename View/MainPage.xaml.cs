@@ -10,7 +10,7 @@ public partial class MainPage : ContentPage
 
     private async void NavigateToLogin(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("loginpage");
+        await Shell.Current.GoToAsync($"//medicinepage");
     }
 
 }

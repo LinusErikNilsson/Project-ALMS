@@ -15,20 +15,24 @@
             Title="Login"
             ContentTemplate="{DataTemplate view:LoginPage}" 
             Route="loginpage"/>
+    <ShellContent
+            Title="WebView"
+            ContentTemplate="{DataTemplate view:WebViewDemo}" 
+            Route="webviewdemo"/>
 
     <TabBar>
         <ShellContent
-            Title="MedicinePage"
+            Title="Lägg till"
             ContentTemplate="{DataTemplate view:MedicinePage}"
             Route="medicinepage"
             Icon="pillmedicine.png"/>
         <ShellContent
-            Title="MedicineStatisticsPage"
+            Title="Logg"
             ContentTemplate="{DataTemplate view:MedicineStatisticsPage}"
             Route="medicinestatisticspage"
-            Icon="dotnet_bot.png"/>
+            Icon="list.png"/>
         <ShellContent
-            Title="SettingsPage"
+            Title="Inställningar"
             ContentTemplate="{DataTemplate view:SettingsPage}"
             Route="settingspage"
             Icon="coggearfilled.png"/>

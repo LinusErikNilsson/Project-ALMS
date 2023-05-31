@@ -2,32 +2,87 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ALMSAPP.View.SettingsPage"
-             Title="SettingsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Inställningar"
+                          Shell.BackgroundColor="#FFFFFF"
+             Shell.TitleColor="#d47b95"
+             Background="#2d5b49">
+    <VerticalStackLayout
+        Spacing="10">
 
-        <HorizontalStackLayout
-            VerticalOptions="Center"
-            HorizontalOptions="Center">
-
-            <Label
-                Text="Logout"
+        <Label
+                Text="Logga ut/Retur till Startsida"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                FontSize="Medium"
-                FontAttributes="Bold"
+                TextColor="White"
+                FontFamily="segoeui"
+                FontSize="20"
+            Margin="0,20,0,0"
                  />
+                
             <Button
-                Text="Click to logout"
+                Text="Klicka för att logga ut"
                 Clicked="LogoutCommand"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                Margin="10,0,0,0"
+                BackgroundColor="#f5ccd0"
+                BorderColor="#d67b97"
+                BorderWidth="3"
+                TextColor="Black"
+                Margin="0,0,0,20"
+                FontSize="20"
                 />
 
-        </HorizontalStackLayout>
+
+            <Label Text="Rensa databasen på alla medicinanteckningar" 
+                                  TextColor="White"
+               FontFamily="segoeui"
+               FontSize="20"
+                   HorizontalOptions="Center"/>
+            <Button Text="Töm Database"
+                    Clicked="DeleteDatabaseContent"
+                    BackgroundColor="#f5ccd0"
+                    BorderColor="#d67b97"
+                    BorderWidth="3"
+                    TextColor="Black"
+                    FontFamily="segoeui"
+                    FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                                    Margin="0,0,0,20"/>
+
+        <Label Text="Demo: GÅ till loginsidan" 
+               TextColor="White"
+               FontFamily="segoeui"
+               FontSize="20"
+               HorizontalOptions="Center"/>
+        <Button Text="Navigera till Loginsidan"
+                Clicked="NavigateToLogin" 
+                    BackgroundColor="#f5ccd0"
+                    BorderColor="#d67b97"
+                    BorderWidth="3"
+                    TextColor="Black"
+                    FontFamily="segoeui"
+                    FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                                    Margin="0,0,0,20"/>
+
+        <Label Text="Demo: WebView" 
+               TextColor="White"
+               FontFamily="segoeui"
+               FontSize="20"
+               HorizontalOptions="Center"/>
+        <Button Text="Navigera till WebView Sidan"
+                Clicked="NavigateToWebView" 
+                    BackgroundColor="#f5ccd0"
+                    BorderColor="#d67b97"
+                    BorderWidth="3"
+                    TextColor="Black"
+                    FontFamily="segoeui"
+                    FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                                    Margin="0,0,0,20"/>
+
     </VerticalStackLayout>
 </ContentPage>
