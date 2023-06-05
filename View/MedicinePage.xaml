@@ -32,7 +32,7 @@
                         ItemDisplayBinding="{Binding Name}"
                         SelectedItem="{Binding selectedItem}"
                         SelectedIndexChanged="OnSelectedIndexChanged"
-                        WidthRequest="200"
+                        WidthRequest="300"
                         HorizontalOptions="Center"
                         BackgroundColor="#f5ccd0"
                     FontSize="20" >
@@ -42,7 +42,7 @@
                    HorizontalOptions="Center"
                    TextColor="White"
                    FontFamily="SegoeUI"
-                   FontSize="20"/>
+                   FontSize="14"/>
 
             <DatePicker
                     MinimumDate="01/01/2020"

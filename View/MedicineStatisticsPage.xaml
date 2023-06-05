@@ -23,7 +23,7 @@
                HorizontalOptions="Start"
                      />
 
-            <HorizontalStackLayout Spacing="30"
+            <HorizontalStackLayout Spacing="40"
                                HorizontalOptions="Start">
                 <Label Text="Medicin"
                    FontSize="24"
@@ -51,8 +51,12 @@
                                            VerticalOptions="Center"
                                            HorizontalOptions="Center"
                                            ToolTipProperties.Text="Medicinnamn"/>
-                                    <Label Text="{Binding selectedDate}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" ToolTipProperties.Text="Datumet då medicinen administrerades"/>
-                                    <Label Text="{Binding selectedTime}" TextColor="White" VerticalOptions="Center" ToolTipProperties.Text="Tiden då medicinen administrerades"/>
+                                    <Label Text="{Binding selectedDate}" TextColor="White" 
+                                           VerticalOptions="Center" HorizontalOptions="Center" 
+                                           ToolTipProperties.Text="Datumet då medicinen administrerades"/>
+                                    <Label Text="{Binding selectedTime}" TextColor="White" 
+                                           VerticalOptions="Center" 
+                                           ToolTipProperties.Text="Tiden då medicinen administrerades"/>
                                     <Button Text="🗑️" 
                                         Clicked="DeleteMedicineRecord"
                                         BackgroundColor="Red" 
@@ -64,8 +68,8 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
             </Grid>
+            
         </VerticalStackLayout>
     </ScrollView>
     

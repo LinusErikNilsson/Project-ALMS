@@ -31,6 +31,7 @@ public partial class MedicineStatisticsPage : ContentPage
 		try
 		{
             Items.Clear();
+            //Database. is where the Method/query is located (From Database class)
             var databaseItems = Database.GetItemsAsync();
             foreach (var item in await databaseItems)
             {

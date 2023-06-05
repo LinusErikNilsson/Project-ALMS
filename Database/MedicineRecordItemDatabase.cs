@@ -26,12 +26,19 @@ namespace ALMSAPP.Database
             return await Database.Table<MedicineRecordItem>().ToListAsync();
         }
 
-        //Unused for now
-        public async Task<MedicineRecordItem> GetItemAsync(int id)
+        //Add a SQL query to Get 20 MedicineRecordItem records and order them by id ASC
+        public async Task<List<MedicineRecordItem>> GetLimitedItemsAsync(int id)
         {
             await Init();
-            return await Database.Table<MedicineRecordItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return await Database.QueryAsync<MedicineRecordItem>("SELECT * FROM [MedicineRecordItem] WHERE [ID] = ? ORDER BY [ID] ASC", id);
         }
+
+        //Unused for now
+        //public async Task<MedicineRecordItem> GetItemAsync(int id)
+        //{
+        //    await Init();
+        //    return await Database.Table<MedicineRecordItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        //}
 
         public async Task<int> SaveItemAsync(MedicineRecordItem medicineItem)
         {

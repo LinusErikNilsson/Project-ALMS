@@ -8,17 +8,9 @@
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
+        Title="Login"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-        <ShellContent
-            Title="Login"
-            ContentTemplate="{DataTemplate view:LoginPage}" 
-            Route="loginpage"/>
-    <ShellContent
-            Title="WebView"
-            ContentTemplate="{DataTemplate view:WebViewDemo}" 
-            Route="webviewdemo"/>
 
     <TabBar>
         <ShellContent
@@ -38,4 +30,12 @@
             Icon="coggearfilled.png"/>
     </TabBar>
 
+        <ShellContent
+            Title="Login"
+            ContentTemplate="{DataTemplate view:LoginPage}" 
+            Route="loginpage"/>
+    <ShellContent
+            Title="WebView"
+            ContentTemplate="{DataTemplate view:WebViewDemo}" 
+            Route="webviewdemo"/>
 </Shell>
