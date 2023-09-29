@@ -28,6 +28,11 @@
             ContentTemplate="{DataTemplate view:SettingsPage}"
             Route="settingspage"
             Icon="coggearfilled.png"/>
+        <ShellContent
+            Title="Tagna Mediciner"
+            ContentTemplate="{DataTemplate view:RecentMedicineRecords}"
+            Route="recentmedicinerecords"
+            Icon="list.png" />
     </TabBar>
 
         <ShellContent
