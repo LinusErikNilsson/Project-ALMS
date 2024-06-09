@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ALMSAPP.MainPage"
+             Title="Välkommen"
+                          Shell.BackgroundColor="#FFFFFF"
+             Shell.TitleColor="#d47b95"
+             Background="#2d5b49">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="dotnet_bot_surfing.png"
+                SemanticProperties.Description="Cute purple dot net bot surfing on a wave"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                />
+
+            <Label
+                Text="Hej, och välkommen till ALMS!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center"
+                TextColor="#d47b95"
+                FontAttributes="Bold"
+                FontFamily="SegoeUI"
+                />
+
+            <Label
+                Text="Din hjälpreda att hålla koll på dina mediciner."
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="26"
+                HorizontalOptions="Center"
+                TextColor="#d47b95"
+                FontAttributes="Bold"
+                FontFamily="SegoeUI"/>
+
+            <Button
+                x:Name="LoginBtn"
+                Text="Fortsätt"
+                SemanticProperties.Description="Tryck här för att fortsätta in i applikationen"
+                SemanticProperties.HeadingLevel="Level1"
+                Clicked="NavigateToLogin"
+                HorizontalOptions="Center"
+                CornerRadius="20"
+                BackgroundColor="#f5ccd0"
+                BorderColor="#d67b97"
+                BorderWidth="4"
+                TextColor="Black"
+                FontSize="18"
+                MinimumWidthRequest="130"
+                FontFamily="SegoeUI"/>
+
+            <Label
+                Text="Psst: ALMS betyder Applikation för Loggning av Medicin och Statistik"
+                SemanticProperties.HeadingLevel="Level1"
+                HorizontalOptions="Center"
+                TextColor="#d47b95"
+                FontSize="20"
+                FontAttributes="Italic"
+                FontFamily="SegoeUI"
+                Margin="0,20,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

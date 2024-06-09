@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ALMSAPP.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ALMSAPP"
+    xmlns:view="clr-namespace:ALMSAPP.View"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <TabBar>
+        <ShellContent
+            Title="Lägg till"
+            ContentTemplate="{DataTemplate view:MedicinePage}"
+            Route="medicinepage"
+            Icon="pillmedicine.png"/>
+        <ShellContent
+            Title="Logg"
+            ContentTemplate="{DataTemplate view:MedicineStatisticsPage}"
+            Route="medicinestatisticspage"
+            Icon="list.png"/>
+        <ShellContent
+            Title="Inställningar"
+            ContentTemplate="{DataTemplate view:SettingsPage}"
+            Route="settingspage"
+            Icon="coggearfilled.png"/>
+        <ShellContent
+            Title="Tagna Mediciner"
+            ContentTemplate="{DataTemplate view:RecentMedicineRecords}"
+            Route="recentmedicinerecords"
+            Icon="list.png" />
+    </TabBar>
+
+        <ShellContent
+            Title="Login"
+            ContentTemplate="{DataTemplate view:LoginPage}" 
+            Route="loginpage"/>
+    <ShellContent
+            Title="WebView"
+            ContentTemplate="{DataTemplate view:WebViewDemo}" 
+            Route="webviewdemo"/>
+</Shell>
